@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Possible Tinker</title>
+    <!-- bootsrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- font awesome social media icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
+    <!-- medium editor -->
+    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+    <!-- main-page css -->
+    <link rel="stylesheet" href="{% static 'css/master.css' %}">
+    <!-- login_registration css -->
+    <link rel="stylesheet" href="{% static 'css/login_registration.css' %}">
+    <!-- posts css -->
+    <link rel="stylesheet" href="{% static 'css/posts.css' %}">
+
+    <meta name="google-signin-client_id" content="1003912117903-tq57nvjl0gte8pjmqd9qfv97ar81v24m.apps.googleusercontent.com">
+
+    {% block extrahead %}
+    {% endblock %}
+  </head>
+
+  <body id=body class="container">
+
+    <head class="header">
+      <nav id="navbar">
+
+        <header class="top-header">
+
+          <nav class="top-nav">
+            <ul>
+              <li class="search_bar">
+                <form class="search-form" action={% url 'search_results' %} method="GET">
+                  <i class="fa fa-search"></i>
+                  <input type="text" name="search" placeholder="Search Here">
+                </form>
+              </li>
+              {% if user.is_superuser %}
+              <li><a href="{% url 'post_new' %}">New Post</a></li>
+              <li><a href="{% url 'post_draft_list' %}">Drafts</a></li>
+              <li><a href="{% url 'logout' %}">Log Out</a></li>
+              <li><a class="signed-in-as">Signed in as: {{user.username}}</a></li>
+              {% elif user.is_authenticated %}
+              <li><a href="{% url 'logout' %}">Log Out</a></li>
+              <li><a>Signed in as: {{user.username}}</a></li>
+              {% else %}
+              <li class="nav_item"><a id='login' class="nav-link login"><span id='top-navlinks'>Login</span></a></li>
+              <li class="nav_item"><a class="nav-link login" href="{% url 'register' %}"><span id='top-navlinks'>Register</span></a></li>
+              {% endif %}
+            </ul>
+          </nav>
+          <div class="mid-table">
+            <div class="container">
+            <a class="heading-title" href="{% url 'post_list' %}">
+              <span class='logo-span' style='color:#0081a7'>W</span>
+              <span class='logo-span' style='color:#00afb9'>o</span>
+              <span class='logo-span' style='color:#fdfcdc'>r</span>
+              <span class='logo-span' style='color:#fed9b7'>l</span>
+              <span class='logo-span' style='color:#f07167'>d</span>
+              <span class='span-spacer'>{'.'}</span>
+              <span>T</span>
+              <span>i</span>
+              <span>n</span>
+              <span>k</span>
+              <span>e</span>
+              <span>r</span>
+            </a>
+            </div>
+            <p href="#">Tinkering with the nuts and bolts of our collective existence.</p>
+              <ul class="nav-bar">
+                <li class="nav-item"><a class="nav-link home" href="{% url 'post_list' %}"><span id='navlinks'>Latest</span></a></li>
+                <li class="nav-item"><a class="nav-link trending" href="{% url 'faith' %}"><span id='navlinks'>Faith</span></a></li>
+                <li class="nav-item"><a class="nav-link inspiration" href="{% url 'food' %}"><span id='navlinks'>Foodie</span></a></li>
+                <li class="nav-item"><a class="nav-link archives" href="{% url 'movie' %}"><span id='navlinks'>Movies</span></a></li>
+                <li class="nav-item"><a class="nav-link contact" href="{% url 'life' %}"><span id='navlinks'>Life</span></a></li>
+                <!-- <a id=social-media-icon href="#" class="fa fa-facebook"></a>
+          <a id=social-media-icon href="#" class="fa fa-twitter"></a>
+          <a id=social-media-icon href="#" class="fa fa-instagram"></a> -->
+              </ul>
+          </div>
+      </nav>
+
+
+<div id="main-container">
+  <div class="row justify-content-md-center">
+    <div class="col-3">
+      <div id="blog-container" class="">
+        <div class="about-container">
+          <img class="about-picture" src="{% static 'images/Mocha_Nap_2.JPG' %}" alt="">
+          <div class="container">
+            <p class="about-text">
+              Los Angeles, CA
+            </p>
+            <p class="about-name">Edward Kim</p>
+          </div>
+        </div>
+        <div class="contact-container">
+          <p id="left-column-header">Contact</p>
+          <p id="social-media-icon-container">
+            <a id=social-media-icon href="#" class="fa fa-facebook"></a>
+            <a id=social-media-icon href="#" class="fa fa-twitter"></a>
+            <a id=social-media-icon href="#" class="fa fa-instagram"></a>
+          </p>
+        </div>
+        <div class="">
+          <div id="trending-container" class="container">
+            {% block trending %}
+            {% endblock %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-8">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </div>
+</div>
+
+<!-- login popup -->
+<div class="modal-body">
+  <div class="container-fluid">
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="myForm" class="form-popup">
+          <div class="col-md-6">
+            <div id="second_logo">
+              <div class="fb-login-button" data-size="medium" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="true" data-use-continue-as="true" data-width=""></div>
+            </div>
+            <div class="">
+              <div id="my-signin2"></div>
+            </div>
+          </div>
+          <div id="login-form">
+            <form class="form-container" id="myForm"  method="POST">
+              {% csrf_token %}
+              <label for="username"><b></b></label>
+              <input id='myField' type="text" placeholder="Email or Username" name="username" required>
+              <label for="password"><b></b></label>
+              <input id='myField' type="password" placeholder="Password" name="password" required>
+              <br>
+              <div class="container">
+                <button id="login-button" formaction="{% url 'login' %}" type="submit" class="btn">Login</button>
+              </div>
+            </form>
+            <div class="">
+              {% for message in messages %}
+                <p id="messages">{{message}}</p>
+              {% endfor %}
+            </div>
+            <div class="mt-4">
+              <div class="d-flex justify-content-center links">
+                Don't have an account? <a href="{% url 'register' %}" class="ml-2">Register Here</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+
+</script>
+<script src="{% static 'js/master.js' %}"></script>
+</body>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=300296037778774&autoLogAppEvents=1" nonce="AwSfQm8P"></script>
+<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+</script>
+</head>

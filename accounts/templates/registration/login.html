@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- <h1>accounts login</h1>
+<form action="{% url 'login' %}" method="POST">
+  <div class="container">
+    <div class="col-6">
+    {% csrf_token %}
+    <p>
+      <label for="username">Username</label>
+      <br>
+      <input type="text" name="username" placeholder="type in your username" required>
+      <br>
+      <br>
+      <label for="password">Password</label>
+      <br>
+      <input type="password" name="password" placeholder="type in your password" required>
+      <br>
+      <br>
+      <input type="submit" name="" value="Submit">
+    </p>
+    </div>
+    </div>
+<!-- The Modal -->
+<div class="modal-body">
+  <div class="container-fluid">
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="myForm" class="form-popup">
+          <div class="col-md-6">
+            <div id="second_logo">
+
+            </div>
+          </div>
+          <div id="login-form">
+            <form class="form-container" id="myForm" action="{% url 'login' %}" method="POST">
+              {% csrf_token %}
+              <label for="username"><b></b></label>
+              <input type="text" placeholder="Email or Username" name="username" required>
+              <label for="password"><b></b></label>
+              <input type="password" placeholder="Password" name="password" required>
+              <br>
+              <div class="container">
+                <button id="login-button" type="submit" class="btn">Login</button>
+              </div>
+            </form>
+            <div class="">
+              {% for message in messages %}
+                <p id="messages">{{message}}</p>
+              {% endfor %}
+            </div>
+            <div class="mt-4">
+              <div class="d-flex justify-content-center links">
+                Don't have an account? <a href="{% url 'register' %}" class="ml-2">Register Here</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+{% endblock %}

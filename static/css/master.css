@@ -1,0 +1,222 @@
+/********** overall control *********/
+li{
+   list-style-type: none;
+   display: inline-block;
+ }
+ h1{
+   font-family: 'Balsamiq Sans';
+ }
+ p{
+   font-family: 'Balsamiq Sans';
+ }
+ button{
+   background: linear-gradient(to right, #0081a7, #00afb9);
+   border-radius: 20px;
+   width: 22%;
+ }
+ button a{
+   color: white;
+ }
+ a{
+   color: black;
+ }
+ a:hover{
+   text-decoration: none;
+   color: black;
+   opacity: .9;
+ }
+/**************************** top-navbar ******************************/
+.search_bar {
+  float: left;
+  margin-top: 7px;
+  cursor: pointer;
+}
+.search_bar input {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #dee2e6;
+}
+.search_bar button{
+  text-align: center;
+  border: 1px solid gray;
+  border-radius: 20px;
+}
+.top-nav {
+  text-align: right;
+  height: 40px;
+}
+#top-navlinks{
+  font-size: 1.2em;
+  font-family: 'Bebas Neue';
+  font-style: bold;
+  color: black;
+  padding: 10px;
+}
+#top-navlinks:hover{
+  opacity: 0.8;
+  cursor: pointer;
+}
+/*************** mid-section / main logo and tag line section ****************/
+.mid-table {
+  margin:0 auto;
+  text-align: center;
+  border-top: 1px solid #dee2e6;
+  width:100%;
+}
+.heading-title{
+  font-size: 4em;
+  font-family: 'Balsamiq Sans';
+}
+.mid-table .container{
+  word-spacing: -3px;
+  letter-spacing: -3px;
+}
+.mid-table .logo-span{
+  text-shadow:
+    -1px -1px 0 #000,
+     0   -1px 0 #000,
+     1px -1px 0 #000,
+     1px  0   0 #000,
+     1px  1px 0 #000,
+     0    1px 0 #000,
+    -1px  1px 0 #000,
+    -1px  0   0 #000;
+}
+
+/******************** main navbar ***************************/
+.nav-bar{
+  border-top: 1px solid #dee2e6;
+  border-bottom: 1px solid #dee2e6;
+  background-color: white;
+  margin:0;
+  padding:0;
+  height: 50px;
+}
+
+#navlinks {
+  display: inline-block;
+  height: 40px;
+  width: 120px;
+  padding: 10px;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  position: relative;
+  /* background: black; */
+  font-style: bold;
+  font-family: 'Bebas Neue';
+  top: -10px;
+  color: black;
+}
+#navlinks:hover {
+  /* background: ;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+
+}
+#navlinks:after {
+  bottom: 0;
+  content: "";
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  transition: 0.2s ease 0s, left 0.2s ease 0s;
+  width: 0;
+}
+#navlinks:hover:after {
+  width: 100%;
+  left: 0;
+  background: linear-gradient(to right, #0081a7,#00afb9,#fdfcdc,#fed9b7,#f07167);
+}
+
+/******************* two main columns *******************/
+
+#main-container{
+  position: relative;
+  width: 100%;
+  padding: 0;
+  margin-top: 2em;
+}
+#post-container{
+  border: 1px solid #dee2e6;
+  padding: 2em;
+}
+#blog-container{
+  text-align: justify;
+}
+
+/* about me section */
+.about-container{
+  border: 1px solid #dee2e6;
+  margin-bottom: 1.5em;
+}
+.about-picture{
+  height:200px;
+  width:254px;
+}
+.about-text{
+  font-size: 1.1em;
+  text-align: center;
+  font-family: 'Odibee Sans';
+}
+.about-name{
+  font-size: 1.4em;
+  text-align: center;
+  font-family: 'Odibee Sans';
+}
+/* contact section */
+.contact-container{
+  border: 1px solid #dee2e6;
+  margin-bottom: 1.5em;
+}
+#social-media-icon {
+  position: relative;
+  font-size: 1.5em;
+  color: white;
+  top: -10px;
+  display: inline-block;
+  padding: 20px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  background: linear-gradient(to right, #0081a7, #00afb9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+#social-media-icon:hover {
+  opacity: 0.7;
+}
+#social-media-icon-container {
+  text-align: center;
+}
+/* trending section */
+#trending-container{
+  border: 1px solid #dee2e6;
+  padding-bottom: 1em;
+  margin-bottom: 1.5em;
+}
+#left-column-header{
+  padding-top: 10px;
+  font-size: 1.4em;
+  font-family: 'Odibee Sans';
+  text-align: center;
+}
+#trending-counter{
+  font-size: 2em;
+  font-family: 'Odibee Sans';
+  text-align: left;
+}
+.trending-list{
+  padding-top: 15px;
+  padding-bottom: 10px;
+  font-size: 1em;
+  font-family: 'Balsamiq Sans';
+}
+
+/********* pagination ********/
+.pagination{
+  padding-bottom: 15px;
+  float: right;
+  font-size: 1.5em;
+  font-family: 'Odibee Sans';
+}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div id="post-container" class="container">
+<h1 class='posttitle loader'>{{post.title}}</h1>
+{% if post.published_date %}
+  <div class="date postdate">
+    {{ post.published_date }} {{ post.views }}
+  </div>
+{% else %}
+  <button class="btn" href="{% url 'post_publish' post.slug %}">Publish</button>
+{% endif %}
+
+
+<p class='postcontent'>{{ post.text|safe }}</p>
+
+
+{% if user.is_superuser %}
+  <button class="btn" href="{% url 'post_edit' post.slug %}">Edit</button>
+  <button class="btn" href="{% url 'post_remove' post.slug %}">Remove</button>
+{% endif %}
+</div>
+
+  <br>
+  {% if user.is_authenticated %}
+    <button class='btn' href="{% url 'add_comment_to_post' post.slug %}">Comment</button>
+  {% else %}
+    <button class='btn' href="{% url 'login' %}">Comment</button>
+  {% endif %}
+  <div class="container">
+    {% for comment in post.comments.all %}
+      <br>
+      {% if user.is_authenticated or comment.approved_comment %}
+        {{ comment.created_date }}
+        {% if not comment.approved_comment %}
+        <button class="btn" href="{% url 'comment_approve' comment.post.slug %}"><span class="fa fa-check"></span></button>
+        <button class="btn" href="{% url 'comment_remove' comment.post.slug %}"><span class="fa fa-remove"></span></button>
+        {% endif %}
+        <p>{{ comment.text | safe | linebreaks }}</p>
+        <p>Posted by: {{comment.author}}</p>
+      {% endif %}
+      {% empty %}
+      <br>
+      <p>No comments.</p>
+    {% endfor %}
+  </div>
+<!-- </div> -->
+
+{% endblock %}

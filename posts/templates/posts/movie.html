@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+
+  {% block content %}
+    {% for post in post_list %}
+      {% if post.movie == True %}
+      <div id="post-container" class="container">
+            <h1 class="posttitle loader"><a href="{% url 'post_detail' post.slug %}"">{{ post.title }}</a></h1>
+              <!-- <span>{{ post.created_date|date:"M d Y" }}</span> -->
+              <div class="date postdate">{{ post.published_date }} {{ post.views }}</div>
+
+              <p class='postcontent'>{{ post.text|safe|truncatewords:120 }}</p>
+              <br>
+              <div><button class="btn"><a href="{% url 'post_detail' post.slug %}">Read</a></button>
+        </div>
+      </div>
+      <br>
+      <br>
+      {% endif %}
+    {% endfor %}
+  {% endblock %}
+
+  {% block trending %}
+      <p id="left-column-header"> Movie </p>
+      {% for post in post_list|dictsortreversed:'views'|slice:":5" %}
+      {% if post.movie == True %}
+        <div class="row justify-content-start">
+          <span id="trending-counter" class="col-2" href="{% url 'post_detail' post.slug %}"> {{ forloop.counter }} </span>
+          <span class="trending-list"><a class="col-2" href="{% url 'post_detail' post.slug %}"> {{ post.title }} </a> </span>
+        </div>
+        {% endif %}
+      {% endfor %}
+
+{% endblock %}

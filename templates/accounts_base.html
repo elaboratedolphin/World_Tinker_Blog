@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Possible Tinker</title>
+    <!-- bootsrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- font awesome social media icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <!-- medium editor -->
+    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+    <!-- main-page css -->
+    <link rel="stylesheet" href="{% static 'css/master.css' %}">
+    <!-- login_registration css -->
+    <link rel="stylesheet" href="{% static 'css/login_registration.css' %}">
+    <!-- posts css -->
+    <link rel="stylesheet" href="{% static 'css/posts.css' %}">
+
+    {% block extrahead %}
+    {% endblock %}
+  </head>
+
+  <body id=body class="container">
+
+    <head class="header">
+      <nav id="navbar">
+
+        <header class="top-header">
+
+          <nav class="top-nav">
+            <ul>
+              {% if user.is_superuser %}
+              <li><a href="{% url 'post_new' %}">New Post</a></li>
+              <li><a href="{% url 'post_draft_list' %}">Drafts</a></li>
+              <li><a href="{% url 'logout' %}">Log Out</a></li>
+              <li><a class="signed-in-as">Signed in as: {{user.username}}</a></li>
+              {% elif user.is_authenticated %}
+              <li><a href="{% url 'logout' %}">Log Out</a></li>
+              <li><a>Signed in as: {{user.username}}</a></li>
+              {% else %}
+              <li class="nav_item"><a id='login' class="nav-link login"><span id='top-navlinks'>Login</span></a></li>
+              <li class="nav_item"><a class="nav-link login" href="{% url 'register' %}"><span id='top-navlinks'>Register</span></a></li>
+              {% endif %}
+            </ul>
+          </nav>
+          <div class="mid-table">
+            <a class="heading-title" href="{% url 'post_list' %}"><img src="{% static 'images/main_logo.png' %}" alt="" </a>
+              <ul class="nav-bar">
+                <li class="nav-item"><a class="nav-link home" href="{% url 'post_list' %}"><span id='navlinks'>Latest</span></a></li>
+                <li class="nav-item"><a class="nav-link trending" href="{% url 'faith' %}"><span id='navlinks'>Faith</span></a></li>
+                <li class="nav-item"><a class="nav-link inspiration" href="{% url 'food' %}"><span id='navlinks'>Foodie</span></a></li>
+                <li class="nav-item"><a class="nav-link archives" href="{% url 'movie' %}"><span id='navlinks'>Movies</span></a></li>
+                <li class="nav-item"><a class="nav-link contact" href="{% url 'life' %}"><span id='navlinks'>Life</span></a></li>
+                <!-- <a id=social-media-icon href="#" class="fa fa-facebook"></a>
+          <a id=social-media-icon href="#" class="fa fa-twitter"></a>
+          <a id=social-media-icon href="#" class="fa fa-instagram"></a> -->
+              </ul>
+          </div>
+      </nav>
+
+
+
+  {% block content %}
+
+  {% endblock %}
+
+
+
+
+
+<!-- login popup -->
+<div class="modal-body">
+  <div class="container-fluid">
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="myForm" class="form-popup">
+          <div class="col-md-6">
+            <div id="second_logo">
+              <a href=""><img src="{% static 'images/second_logo.JPG' %}" alt=""></a>
+            </div>
+          </div>
+          <!-- <div class="col-md-6"> -->
+            <div id="login-form">
+            <form class="form-container" action="{% url 'login' %}" method="POST">
+              {% csrf_token %}
+              <label for="username"><b></b></label>
+              <input type="text" placeholder="Email or Username" name="username" required>
+              <label for="password"><b></b></label>
+              <input type="password" placeholder="Password" name="password" required>
+              <br>
+              <div class="container">
+
+                <button type="submit" class="btn">Login</button>
+              </div>
+            </form>
+            <form class="" action="" method="post">
+
+            </form>
+            </div>
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<script src="{% static 'js/master.js' %}"></script>
+</body>
+</head>

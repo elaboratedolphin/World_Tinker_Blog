@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+
+{% block content %}
+  {% for post in post_list %}
+      <div id="post-container" class="container">
+            <h1 class="posttitle loader"><a href="{% url 'post_detail' post.slug %}"">{{ post.title }}</a></h1>
+              <!-- <span>{{ post.created_date|date:"M d Y" }}</span> -->
+              <div class="date postdate">{{ post.published_date }} {{ post.views }}</div>
+
+              <p class='postcontent'>{{ post.text|safe|truncatewords:120 }}</p>
+              <br>
+              <div><a href=" {% url 'post_detail' post.slug %}" class="btn btn-primary">Read</a>
+        </div>
+      </div>
+    {% empty %}
+      <h1>Your search shows no results!</h1>
+      <img src="{% static 'images/Mocha_Drowsy.JPG' %}" style= "width: 100%;"  alt="">
+      <h1>Please review the spelling or type in another search term.</h1>
+    {% endfor %}
+  {% endblock %}
+
+  {% block trending %}
+      <p id="right-column-header"> Custom Search Rankings </p>
+      {% for post in post_list|dictsortreversed:'views'|slice:":5" %}
+        <div class="row justify-content-start">
+          <span id="trending-counter" class="col-2" href="{% url 'post_detail' post.slug %}"> {{ forloop.counter }} </span>
+          <span class="trending-list"><a class="col-2" href="{% url 'post_detail' post.slug %}"> {{ post.title }} </a> </span>
+        </div>
+      {% empty %}
+      <p>Rankings not available for an unsuccessful search.</p>
+      {% endfor %}
+{% endblock %}

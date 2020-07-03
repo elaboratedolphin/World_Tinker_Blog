@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<body>
+  <!-- <div class="row justify-content-md-center">
+    <div class="col-md-6">
+      <h2>Register Here!</h2> -->
+
+<form class="registration-form" method="POST">
+  <h1>Register</h1>
+  {% csrf_token %}
+  <div class="row">
+    <div class="col-md-4">
+      {{ register_form.first_name }}
+    </div>
+      <div class="col-md-4">
+        {{ register_form.last_name }}
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      {{ register_form.username }}
+    </div>
+    <div class="col-md-4">
+      {{ register_form.email }}
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-md-4">
+        {{ register_form.password1 }}
+      </div>
+      <div class="col-md-4">
+        {{ register_form.password2 }}
+      </div>
+    </div>
+    <div class="container">
+      <button type="submit" class="btn" style="width:15%; color: white;">Register</button>
+    </div>
+</form>
+{% for message in messages %}
+  <div class="alert-warning">{{message}}</div>
+{% endfor %}
+
+{{register_form.errors}}
+    <span>Already registered? </span><a id="login-at-register"><span>Login Here!</span></a>
+
+
+</body>
+
+<script type="text/javascript">
+  var login_at_register = document.getElementById("login-at-register");
+  login_at_register.onclick = function() {
+    modal.style.display = "block";
+  }
+</script>
+{% endblock %}
