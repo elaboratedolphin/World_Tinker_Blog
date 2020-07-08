@@ -23,7 +23,7 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'l1hr3^=8^g017%lu+ffmtdg9$21e5zp36$5dxtd4y#w%x)x=tg'
+SECRET_KEY = **********************************************
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -195,11 +195,11 @@ CKEDITOR_CONFIGS = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
+        'NAME': '**********',
+        'USER': '********',
         'PASSWORD': '***************',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'HOST': '*********
+        'PORT': '********
     }
 }
 
